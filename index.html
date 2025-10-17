@@ -12,7 +12,29 @@
             font-family: 'Inter', sans-serif;
             /* Dark background to match the Gemini/Android style */
             background-color: #121212; 
+            overflow-x: hidden; /* Prevent horizontal scroll from particles */
         }
+        /* --- Dynamic Background Particles (Google-esque) --- */
+        .dynamic-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.15; /* Subtle transparency */
+            background: radial-gradient(circle at top left, rgba(66, 133, 244, 0.2), transparent 40%),
+                        radial-gradient(circle at bottom right, rgba(234, 67, 53, 0.2), transparent 40%);
+            animation: gradient-shift 15s ease-in-out infinite alternate;
+        }
+
+        @keyframes gradient-shift {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+        /* --- End Dynamic Background --- */
+
         /* Custom styles for vertical shorts container */
         .shorts-container {
             /* Standard mobile vertical aspect ratio (9:16) */
@@ -79,17 +101,45 @@
         #portfolio > div:nth-child(3) {
             animation-delay: 0.9s;
         }
+        
+        /* --- Liquid Glass Button Style --- */
+        .glass-button {
+            display: inline-flex;
+            align-items: center;
+            padding: 1rem 2rem;
+            margin: 0.5rem;
+            border-radius: 9999px;
+            background-color: rgba(30, 41, 59, 0.4); /* Dark translucent background */
+            border: 1px solid rgba(100, 116, 139, 0.5); /* Light gray border */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+            font-weight: 500;
+            text-decoration: none;
+            color: #ffffff;
+        }
+
+        .glass-button:hover {
+            background-color: rgba(30, 41, 59, 0.6); /* Slightly darker on hover */
+            border-color: #4285F4; /* Google Blue border on hover */
+            box-shadow: 0 6px 10px rgba(66, 133, 244, 0.3); /* Blue shadow */
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 <body class="text-white min-h-screen">
+    
+    <!-- Dynamic Background Element -->
+    <div class="dynamic-background"></div>
 
-    <div class="max-w-7xl mx-auto p-4 md:p-8 lg:p-12">
+    <div class="max-w-7xl mx-auto p-4 md:p-8 lg:p-12 relative z-10">
         <!-- Header - Clean and Minimal -->
         <header class="flex justify-between items-center py-6 border-b border-gray-800 mb-12 smooth-pop-up" style="animation-delay: 0.1s;">
             <h1 class="text-3xl font-light tracking-tight text-white">
                 <span class="text-blue-400">A</span>shes<span class="text-red-400">h</span> <span class="text-yellow-400">D</span>as <span class="text-green-400">R</span>up
             </h1>
-            <a href="#contact" class="text-sm font-medium text-gray-300 hover:text-blue-400 transition duration-300">
+            <!-- Contact link uses the general email for the header -->
+            <a href="mailto:asheshdas794@gmail.com" class="text-sm font-medium text-gray-300 hover:text-blue-400 transition duration-300">
                 Contact Me
             </a>
         </header>
@@ -97,10 +147,12 @@
         <!-- Hero Section - Centered Google Style (Now Animated) -->
         <section class="text-center mb-20 pt-8 smooth-pop-up" style="animation-delay: 0.3s;">
             <div class="mb-8">
-                <!-- Profile Picture - Circular and professional -->
-                <img src="https://yt3.googleusercontent.com/PIzLpe5DTzLrQHBP657fRrMTLQtBHgwYxHj3VGiwa7x7nWqqwji0ZkeVlCb5pu_cruqTLGCxb_c=s180-c-k-c0x00ffffff-no-rj" 
-                     alt="Ashesh Das Rup Profile Picture" 
-                     class="w-36 h-36 rounded-full mx-auto object-cover border-4 border-gray-700 shadow-xl transition hover:border-blue-400">
+                <!-- Profile Picture - Now linked to NEW YouTube channel @asheshdas1 -->
+                <a href="https://www.youtube.com/@asheshdas1" target="_blank" rel="noopener noreferrer">
+                    <img src="https://yt3.googleusercontent.com/PIzLpe5DTzLrQHBP657fRrMTLQtBHgwYxHj3VGiwa7x7nWqqwji0ZkeVlCb5pu_cruqTLGCxb_c=s180-c-k-c0x00ffffff-no-rj" 
+                        alt="Ashesh Das Rup Profile Picture" 
+                        class="w-36 h-36 rounded-full mx-auto object-cover border-4 border-gray-700 shadow-xl transition hover:border-blue-400 hover:scale-105 cursor-pointer">
+                </a>
             </div>
             
             <h2 class="text-6xl font-extrabold mb-4 leading-tight tracking-tighter">
@@ -128,7 +180,7 @@
                 </div>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <!-- Video 1: gGi3dlYmyQg - UPDATED SLOT -->
+                    <!-- Video 1: gGi3dlYmyQg - Description removed -->
                     <div class="bg-gray-900 rounded-lg overflow-hidden shadow-lg transition hover:shadow-blue-500/50">
                         <div class="aspect-w-16 aspect-h-9" style="padding-bottom: 56.25%; position: relative;">
                             <iframe 
@@ -139,10 +191,9 @@
                                 allowfullscreen>
                             </iframe>
                         </div>
-                        <p class="p-4 text-gray-300 font-light text-sm">Dynamic showcase of new 1.6 game animations focusing on smooth motion, riding, and cinematic player effects.</p>
                     </div>
 
-                    <!-- Video 2: 9PL2Vbit6sE (Existing) -->
+                    <!-- Video 2: 9PL2Vbit6sE - Description removed -->
                     <div class="bg-gray-900 rounded-lg overflow-hidden shadow-lg transition hover:shadow-blue-500/50">
                         <div class="aspect-w-16 aspect-h-9" style="padding-bottom: 56.25%; position: relative;">
                             <iframe 
@@ -153,16 +204,13 @@
                                 allowfullscreen>
                             </iframe>
                         </div>
-                        <p class="p-4 text-gray-300 font-light text-sm">Creative edits and cinematic flair for engaging gameplay highlights.</p>
                     </div>
                 </div>
             </div>
 
-            <!-- 2. Viral Shorts Showcase (Now Animated) -->
+            <!-- 2. Viral Shorts Showcase (Titles Restored) -->
             <div class="bg-gray-800 p-6 sm:p-10 rounded-xl shadow-2xl smooth-pop-up">
-                <!-- Added text-center here for consistency -->
                 <div class="text-center">
-                    <!-- Adjusted to font-light for clean look -->
                     <h3 class="video-category-title text-4xl font-light mb-8 text-green-300 mx-auto max-w-lg">
                         Viral & High-Retention Shorts
                     </h3>
@@ -171,13 +219,13 @@
                     </p>
                 </div>
                 
-                <!-- Shorts Grid -->
+                <!-- Shorts Grid - Titles are back as requested -->
                 <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 justify-center">
 
-                    <!-- Motivational Shorts -->
+                    <!-- Motivational Shorts 1 -->
                     <div class="text-center">
-                        <h4 class="text-lg font-light mb-3 text-gray-200">Motivational</h4>
-                        <div class="shorts-container bg-gray-900 rounded-lg overflow-hidden shadow-xl mb-4 transition hover:shadow-green-500/50">
+                        <h4 class="text-lg font-light mb-3 text-gray-200">Motivational</h4> <!-- Title Restored -->
+                        <div class="shorts-container bg-gray-900 rounded-lg overflow-hidden shadow-xl transition hover:shadow-green-500/50">
                             <iframe 
                                 class="w-full h-full"
                                 src="https://www.youtube.com/embed/8iOEP2MgKv0?rel=0" 
@@ -188,9 +236,10 @@
                         </div>
                     </div>
                     
+                    <!-- Motivational Shorts 2 -->
                     <div class="text-center hidden sm:block">
-                        <h4 class="text-lg font-light mb-3 text-gray-200">Motivational</h4>
-                        <div class="shorts-container bg-gray-900 rounded-lg overflow-hidden shadow-xl mb-4 transition hover:shadow-green-500/50">
+                        <h4 class="text-lg font-light mb-3 text-gray-200">Motivational</h4> <!-- Title Restored -->
+                        <div class="shorts-container bg-gray-900 rounded-lg overflow-hidden shadow-xl transition hover:shadow-green-500/50">
                             <iframe 
                                 class="w-full h-full"
                                 src="https://www.youtube.com/embed/dljiVBPnPPk?rel=0" 
@@ -201,10 +250,10 @@
                         </div>
                     </div>
 
-                    <!-- General Shorts -->
+                    <!-- General Shorts 1 -->
                     <div class="text-center hidden lg:block">
-                        <h4 class="text-lg font-light mb-3 text-gray-200">General/VFX</h4>
-                        <div class="shorts-container bg-gray-900 rounded-lg overflow-hidden shadow-xl mb-4 transition hover:shadow-green-500/50">
+                        <h4 class="text-lg font-light mb-3 text-gray-200">General/VFX</h4> <!-- Title Restored -->
+                        <div class="shorts-container bg-gray-900 rounded-lg overflow-hidden shadow-xl transition hover:shadow-green-500/50">
                             <iframe 
                                 class="w-full h-full"
                                 src="https://www.youtube.com/embed/kR83hGPg-Ko?rel=0" 
@@ -215,9 +264,10 @@
                         </div>
                     </div>
 
+                    <!-- General Shorts 2 -->
                     <div class="text-center hidden lg:block">
-                        <h4 class="text-lg font-light mb-3 text-gray-200">General/VFX</h4>
-                        <div class="shorts-container bg-gray-900 rounded-lg overflow-hidden shadow-xl mb-4 transition hover:shadow-green-500/50">
+                        <h4 class="text-lg font-light mb-3 text-gray-200">General/VFX</h4> <!-- Title Restored -->
+                        <div class="shorts-container bg-gray-900 rounded-lg overflow-hidden shadow-xl transition hover:shadow-green-500/50">
                             <iframe 
                                 class="w-full h-full"
                                 src="https://www.youtube.com/embed/t7VCEFDONbM?rel=0" 
@@ -230,8 +280,8 @@
                     
                     <!-- Educational Shorts -->
                     <div class="text-center">
-                        <h4 class="text-lg font-light mb-3 text-gray-200">Educational</h4>
-                        <div class="shorts-container bg-gray-900 rounded-lg overflow-hidden shadow-xl mb-4 transition hover:shadow-green-500/50">
+                        <h4 class="text-lg font-light mb-3 text-gray-200">Educational</h4> <!-- Title Restored -->
+                        <div class="shorts-container bg-gray-900 rounded-lg overflow-hidden shadow-xl transition hover:shadow-green-500/50">
                             <iframe 
                                 class="w-full h-full"
                                 src="https://www.youtube.com/embed/zF0Igdx_C_c?rel=0" 
@@ -247,7 +297,6 @@
             <!-- 3. Additional Professional Information (Now Animated) -->
             <div id="additional-info" class="bg-gray-800 p-6 sm:p-10 rounded-xl shadow-2xl smooth-pop-up">
                 <div class="text-center">
-                    <!-- Adjusted to font-light for clean look -->
                     <h3 class="video-category-title text-4xl font-light mb-8 text-yellow-300 mx-auto max-w-lg">
                         Expertise & Core Competencies
                     </h3>
@@ -279,10 +328,18 @@
             <p class="text-lg font-light text-gray-400 mb-6">
                 Let's create engaging and high-quality video content together.
             </p>
-            <a href="mailto:asheshdas794@gmail.com" 
-               class="inline-block px-8 py-3 bg-blue-600 text-white font-medium rounded-full shadow-lg transition duration-300 hover:bg-blue-700 hover:shadow-blue-500/70 transform hover:scale-105">
-                Email Me: asheshdas794@gmail.com
-            </a>
+            <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-4">
+                <!-- General Contact Button (Liquid Glass Style) -->
+                <a href="mailto:asheshdas794@gmail.com" class="glass-button">
+                    General Inquiries: asheshdas794@gmail.com
+                </a>
+                
+                <!-- Business Contact Button (Liquid Glass Style) -->
+                <a href="mailto:distractionn800@gmail.com" class="glass-button">
+                    Business / Service: distractionn800@gmail.com
+                </a>
+            </div>
+            
             <p class="mt-8 text-sm font-light text-gray-600">
                 &copy; 2025 Ashesh Das Rup 
             </p>
